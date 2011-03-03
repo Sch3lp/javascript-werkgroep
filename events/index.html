@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout demo</title>
+    <script src="js/jquery-1.5.1.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="js/knockout-1.1.2.js"></script>
+    <script src="js/events.js"></script>
+    
+    <script>
+        $(function () {
+            ko.applyBindings(VIEWMODEL.createViewModel());
+        });
+    </script>
+</head>
+<body>
+    <select data-bind="options: mogelijkeSteden, value: geselecteerdeStad, optionsCaption:'Kies een stad'"></select>
+
+    <div data-bind="template:'events'"></div>
+
+
+    <script type="text/html" id="events">
+        <ul>
+        {{each events}}
+            <li><a href="${url}">${name}</a> (${venue_name})</li>
+        {{/each}}
+        </ul>
+    </script>
+
+</body>
+</html>

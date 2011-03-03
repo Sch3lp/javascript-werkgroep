@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grayscale video</title>
+    <script src="js/jquery-1.5.1.js"></script>
+    <script src="js/video.js"></script>
+    <script>
+        window.onload = function () {
+            var context = $('#grayscaler')[0].getContext('2d');
+            var contextScratch = $('#scratchcanvas')[0].getContext('2d');
+            var worker = new Worker('js/grayscale.js');
+            var video = $('video')[0];
+            worker.onmessage = function (e) {
+                context.putImageData({
+                    data: e.data,
+                    width: 320,
+                    height: 240
+                }, 0, 0);
+            };
+
+            monitor = VIDEO.monitorVideo(video, contextScratch, function (imageData) {
+                worker.postMessage(imageData.data);
+            });
+
+            $('video').bind({
+                play: monitor.start,
+                pause: monitor.stop,
+                ended: monitor.stop
+            });
+        };
+    </script>
+</head>
+<body>
+    <video autobuffer controls width="320px" height="240px">
+        <source src="sleeping.ogv" type="video/ogg"/>
+    </video>
+    <canvas id="grayscaler" width="320px" height="240px" style='border: 1px solid'></canvas>
+    <canvas id="scratchcanvas" width="320px" height="240px" style='display:none;'></canvas>'
+</body>
+</html>

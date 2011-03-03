@@ -1,0 +1,32 @@
+
+#wrapper {
+    position:absolute;
+    width: 700px;
+    height: 100%;
+    overflow:hidden;
+}
+
+.page {
+    position:absolute;
+    width: 300px;
+    background-color: #f0f96f;
+    -moz-transition: left 0.25s ease-in-out 0s;
+}
+
+.left {
+    left: -200px;
+}
+.farleft {
+    left: -400px;
+}
+
+.current {
+    left: 200px;
+}
+
+.right {
+    left: 600px;
+}
+.right {
+    left: 800px;
+}

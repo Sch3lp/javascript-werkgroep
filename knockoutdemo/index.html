@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout demo</title>
+    <script src="js/knockout-1.1.2.js"></script>
+    <script src="js/jquery-1.5.1.js"></script>
+    <script src="js/viewmodel.js"></script>
+    
+    <script>
+        $(function () {
+            ko.applyBindings(LAND.createViewModel(), $('#form1')[0]);
+        });
+    </script>
+</head>
+<body>
+<div id='form1'>
+    <select data-bind="options: landOpties, value: geselecteerdLand"></select>
+
+    <div data-bind="visible:binnenlandZichtbaar">
+        <input type='number' data-bind="value:postcode">
+        <span data-bind="text:gemeente"></span>
+    </div>
+    <div data-bind="visible:buitenlandZichtbaar">
+        <input type='text' data-bind="value:buitenlandVeld">
+    </div>
+</div>
+
+
+</body>
+</html>
